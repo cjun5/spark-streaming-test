@@ -1,0 +1,44 @@
+plugins {
+    id 'java'
+    id 'scala'
+    id 'idea'
+}
+
+group 'com.devidea.spark'
+version '0.1.0'
+
+repositories {
+    mavenCentral()
+}
+
+ext {
+    v_scala_target = '2.12'
+    v_scala = '2.12.10'
+    v_scala_logging = '3.9.2'
+    v_spark = '2.4.5'
+    v_kafka = '2.5.1'
+    v_scalatest = '3.1.1'
+    v_scopt = '3.7.1'
+    v_scalaj_http = '2.4.2'
+}
+
+dependencies {
+    implementation group: 'org.scala-lang', name: 'scala-library', version: v_scala
+    implementation group: 'org.scala-lang', name: 'scala-reflect', version: v_scala
+
+    implementation group: 'org.apache.spark', name: "spark-sql_$v_scala_target", version: v_spark
+    implementation group: 'org.apache.spark', name: "spark-hive_$v_scala_target", version: v_spark
+    implementation group: 'org.apache.spark', name: "spark-streaming_$v_scala_target", version: v_spark
+    implementation group: 'org.apache.spark', name: "spark-streaming-kafka-0-10_$v_scala_target", version: v_spark
+    implementation group: 'org.apache.spark', name: "spark-sql-kafka-0-10_$v_scala_target", version: v_spark
+
+//    testImplementation 'org.junit.jupiter:junit-jupiter-api:5.6.0'
+//    testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine'
+
+    testImplementation group: 'junit', name: 'junit', version: '4.12'
+    testImplementation group: 'org.scalatest', name: "scalatest_$v_scala_target", version: v_scalatest
+}
+
+test {
+    useJUnitPlatform()
+}
